@@ -124,11 +124,11 @@
 		07649D6A215E12D700CAE7BC /* Shibafu */ = {
 			isa = PBXGroup;
 			children = (
+				07649D6B215E12D700CAE7BC /* AppDelegate.swift */,
 				07649DA7215E634600CAE7BC /* AddTableViewController.swift */,
 				07649DA5215E4E5F00CAE7BC /* EditTableViewController.swift */,
 				07649DA1215E338000CAE7BC /* Tasks.swift */,
 				07649DA3215E3A2700CAE7BC /* Utils.swift */,
-				07649D6B215E12D700CAE7BC /* AppDelegate.swift */,
 				07649D6D215E12D700CAE7BC /* FirstViewController.swift */,
 				07649D6F215E12D700CAE7BC /* SecondViewController.swift */,
 				07649D71215E12D700CAE7BC /* Main.storyboard */,

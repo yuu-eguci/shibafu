@@ -190,7 +190,6 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         if DropboxClientsManager.authorizedClient == nil {
             DropboxClientsManager.authorizeFromController(
                 UIApplication.shared, controller: self, openURL: {(url:URL) -> Void in UIApplication.shared.open(url)})
-            return
         }
     }
     
