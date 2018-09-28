@@ -1,5 +1,5 @@
 //
-//  EditTableViewController.swift
+//  AddTableViewController.swift
 //  Shibafu
 //
 //  Created by Midori on 2018/09/28.
@@ -8,14 +8,11 @@
 
 import UIKit
 
-class EditTableViewController: UITableViewController, UITextViewDelegate {
+class AddTableViewController: UITableViewController, UITextViewDelegate {
     
-    
-    // メインViewで長押しされたインデックス。
-    var longPressedIndex:Int!
     
     // 編集されたテキストを格納する。
-    var editedText:String!
+    var addedText:String!
     
     // テキストビュー。
     @IBOutlet weak var textView: UITextView!
@@ -24,7 +21,6 @@ class EditTableViewController: UITableViewController, UITextViewDelegate {
     @IBOutlet var table: UITableView!
     
     
-    // DidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -32,9 +28,6 @@ class EditTableViewController: UITableViewController, UITextViewDelegate {
         table.rowHeight = UITableView.automaticDimension
         table.estimatedRowHeight = 10000
         textView.delegate = self
-        
-        // これから編集するものをテキストビューに表示します。
-        textView.text = Tasks.normals[longPressedIndex!]
         
         // テキストビューにカーソルをあわせます。
         textView.becomeFirstResponder()
@@ -55,9 +48,9 @@ class EditTableViewController: UITableViewController, UITextViewDelegate {
     // segue起動時に実行されるよここが。そんでFirstViewのsaveToMainViewControllerに飛ぶ。
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "saveEdit" {
+        if segue.identifier == "saveAdd" {
             // 変更テキストをセットします。
-            editedText = textView.text
+            addedText = textView.text
         }
     }
 }
