@@ -38,10 +38,10 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     
     
     // 描画中に使う: すでに月を書いた。
-    private var wroteMonth:Bool = false
+    private var writtenMonths:[String] = []
     // 描画中に使う: 一週間の月。
     private var thisMonth:String = ""
-
+    
     
     // cellを作成します。
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -67,28 +67,14 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
             return cell
         }
         
-        // 月表記のための処理です。
-        let month = monthFormatter.string(from: date)
-        // column0から集計開始。
-        if column == 0 {
-            thisMonth = month
-        } else if column <= 6 {
-            // すでにこの月が書かれてたら現在月をチェンジ。
-            if wroteMonth && thisMonth != month {
-                thisMonth = month
-                wroteMonth = false
-            }
-        }
-        
-        // 月の列。
+        // 月表記のための処理です。週に次の月がまじったところで月を表記します。
         if column == 7 {
-            if !wroteMonth {
+            if !writtenMonths.contains(thisMonth) {
                 label.text = thisMonth
-                wroteMonth = true
+                writtenMonths.append(thisMonth)
             }
-        }
-        // 日の列。
-        else {
+        } else {
+            thisMonth = monthFormatter.string(from: date)
             cell.backgroundColor = Utils.getColorFromNum(num: int)
             label.text = dayFormatter.string(from: date)
         }
@@ -102,10 +88,6 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     // ===============================
     // 芝生リストを手動で更新します。
     @IBAction func updateButton(_ sender: Any) {
-        
-        // ワーク変数リセット。
-        wroteMonth = false
-        thisMonth = ""
         
         // Dropboxからデータを取得してcollectionViewに表示します。
         Tasks.downloadTasks(collection:collection)
