@@ -11,30 +11,42 @@ import UIKit
 class EditTableViewController: UITableViewController, UITextViewDelegate {
     
     
+    // メインViewで長押しされたインデックス。
+    var longPressedIndex:Int!
+    
+    // 編集されたテキストを格納する。
+    var editedText:String!
+    
+    // テキストビュー。
     @IBOutlet weak var textView: UITextView!
+    
+    // テーブル。
     @IBOutlet var table: UITableView!
     
     
-    
+    // DidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // テキストビューを高さ可変にします。
+        
+        // テキストビューを高さ可変にします。storyboardのほうでtextViewの四方に制約つけて、Scrolling enabledを外すこと。
         table.rowHeight = UITableView.automaticDimension
-        table.rowHeight = 10000
+        table.estimatedRowHeight = 10000
         textView.delegate = self
+        
+        // これから編集するものをテキストビューに表示します。
+        //editTextView.text = lines[longPressedIndex!]
         
         // テキストビューにカーソルをあわせます。
         textView.becomeFirstResponder()
     }
-
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        return 0
-    }
     
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+    // textViewが変更されるたびに実行されるとこ。
+    // UITextViewDelegateの継承を忘れずに。
+    func textViewDidChange(_ textView: UITextView) {
+        
+        table.beginUpdates()
+        table.endUpdates()
     }
 }
