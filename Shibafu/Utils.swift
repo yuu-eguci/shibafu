@@ -6,7 +6,7 @@
 //  Copyright © 2018年 Mate. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 class Utils {
     
@@ -73,5 +73,24 @@ class Utils {
             d = Date(timeInterval: 60*60*24, since: d)
         }
         return d
+    }
+    
+    
+    // 色リスト
+    private static let colors:[UIColor] = [
+        UIColor( red: 228/255, green: 231/255, blue: 235/255, alpha: 1.0 ),
+        UIColor( red: 179/255, green: 224/255, blue: 119/255, alpha: 1.0 ),
+        UIColor( red: 87/255, green: 191/255, blue: 91/255, alpha: 1.0 ),
+        UIColor( red: 0/255, green: 137/255, blue: 47/255, alpha: 1.0 ),
+        UIColor( red: 0/255, green: 79/255, blue: 32/255, alpha: 1.0 ),
+        ]
+    
+    
+    // 数値を受け取って色を返します。
+    static func getColorFromNum(num:Int) -> UIColor {
+        if num >= 10 {
+            return colors.last!
+        }
+        return colors[num / 2]
     }
 }
