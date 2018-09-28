@@ -12,10 +12,17 @@ import SwiftyDropbox
 class FirstViewController: UIViewController {
     
     
+    // 日付を格納するラベル。
+    @IBOutlet weak var label: UILabel!
+    // タスクが入るテーブル。
+    @IBOutlet weak var table: UITableView!
+    
+    
+    
     // Dropbox認証がされてないときは強制的に認証ページへ
     override func viewDidAppear(_ animated: Bool) {
         
-        guard let client = DropboxClientsManager.authorizedClient else {
+        if DropboxClientsManager.authorizedClient == nil {
             DropboxClientsManager.authorizeFromController(
                 UIApplication.shared, controller: self, openURL: {(url:URL) -> Void in UIApplication.shared.open(url)})
             return
@@ -25,7 +32,6 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
 
