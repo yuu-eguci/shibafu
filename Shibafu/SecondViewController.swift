@@ -52,12 +52,14 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         // storyboardで設定したidentifier.
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = UIColor( red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0 )
         
         // このセルの列。0〜7
         let column:Int = indexPath.row % 8
         
         // tag番号を使ってLabelインスタンスを生成します。
         let label = cell.contentView.viewWithTag(1) as! UILabel
+        label.text = ""
         
         // 曜日表記行の場合はここで終了。
         if int == Tasks.WEEKDAY_ROW_VALUE {
@@ -78,18 +80,35 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
             }
         }
         
+        // 月の列。
         if column == 7 {
-            cell.backgroundColor = UIColor( red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0 )
             if !wroteMonth {
                 label.text = thisMonth
                 wroteMonth = true
             }
-        } else {
+        }
+        // 日の列。
+        else {
             cell.backgroundColor = Utils.getColorFromNum(num: int)
             label.text = dayFormatter.string(from: date)
         }
         
         return cell
+    }
+    
+    
+    // ===============================
+    // 手動更新
+    // ===============================
+    // 芝生リストを手動で更新します。
+    @IBAction func updateButton(_ sender: Any) {
+        
+        // ワーク変数リセット。
+        wroteMonth = false
+        thisMonth = ""
+        
+        // Dropboxからデータを取得してcollectionViewに表示します。
+        Tasks.downloadTasks(collection:collection)
     }
     
     
