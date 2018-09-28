@@ -1,0 +1,20 @@
+PODS:
+  - Alamofire (4.5.1)
+  - SwiftyDropbox (4.6.0):
+    - Alamofire (~> 4.5.0)
+
+DEPENDENCIES:
+  - SwiftyDropbox
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - SwiftyDropbox
+
+SPEC CHECKSUMS:
+  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  SwiftyDropbox: 8af645e744de6f17b4e9fdeba21365b8dc55a542
+
+PODFILE CHECKSUM: 09402d1f703a316bc38e4c00f5557a1928172d24
+
+COCOAPODS: 1.5.3
