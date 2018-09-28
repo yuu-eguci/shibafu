@@ -9,7 +9,7 @@
 import UIKit
 import SwiftyDropbox
 
-class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class FirstViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate {
     
     
     // ===============================
@@ -56,6 +56,68 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    // ===============================
+    // 長押し編集に関するもの
+    // ===============================
+    // 長押しされたインデックスが格納されます。
+    var longPressedIndex:Int!
+    
+    
+    // テーブル長押し時の処理です。(viewDidLoadで登録済み)
+    @objc func editCell(recognizer: UILongPressGestureRecognizer) {
+        
+        // 長押しされたインデックス番号。
+        let pressedIndex = table.indexPathForRow(at: recognizer.location(in: table))
+        
+        if pressedIndex != nil {
+            if recognizer.state == UIGestureRecognizer.State.began {
+                
+                // indexPath?.row は Optional<Int> なのになぜか indexPath?.row! も indexPath?.row? もできない。
+                // しかたないから Optional binding (条件式にのやつ)を使う。
+                if let _i = pressedIndex?.row {
+                    
+                    // 押されたインデックスをクラス変数に保存。
+                    longPressedIndex = _i
+                    // segueを起動。
+                    self.performSegue(withIdentifier: "edit", sender: nil)
+                }
+            }
+        }
+    }
+    
+    
+    // segueで移動するとき呼ばれるやつだよねたぶん。
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        // 次のViewにインデックスとメイン配列を送ります。
+        if segue.identifier == "edit" {
+            let nextView = segue.destination as! EditTableViewController
+            nextView.longPressedIndex = self.longPressedIndex
+        }
+    }
+    
+    
+    // セル編集画面の save を押すとここが実行されます。
+    @IBAction func saveToMainViewController (segue:UIStoryboardSegue) {
+        
+        // 編集画面で変更のあったテキストをこちらのリストに適用します。
+        let previousView = segue.source as! EditTableViewController
+        Tasks.normals[previousView.longPressedIndex] = previousView.editedText
+        table.reloadData()
+    }
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     
     
@@ -75,6 +137,11 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         
         // Dropboxからデータを取得してテーブルに表示します。
         Tasks.downloadTasks(table:table)
+        
+        // テーブル長押し時のメソッドを定義します。
+        let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(editCell))
+        recognizer.delegate = self
+        table.addGestureRecognizer(recognizer)
     }
 }
 
