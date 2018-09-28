@@ -104,6 +104,9 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         let previousView = segue.source as! EditTableViewController
         Tasks.normals[previousView.longPressedIndex] = previousView.editedText
         table.reloadData()
+        
+        // 現在の状態をDropboxにアップロード。
+        Tasks.uploadTasks(label: label)
     }
     
     

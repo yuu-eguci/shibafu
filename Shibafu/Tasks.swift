@@ -22,7 +22,7 @@ class Tasks {
     static func downloadTasks(table:UITableView) {
         
         // Dropbox認証。
-        guard let client = DropboxClientsManager.authorizedClient else {
+        guard let client:DropboxClient = DropboxClientsManager.authorizedClient else {
             print("User isn't authorized. Weird.")
             return
         }
@@ -107,6 +107,60 @@ class Tasks {
                 tasks.append(lines[i])
             }
             ret[date] = tasks
+        }
+        return ret
+    }
+    
+    
+    // 現在の状態をアップロードします。
+    static func uploadTasks(label:UILabel) {
+        
+        // Dropbox認証。
+        guard let client:DropboxClient = DropboxClientsManager.authorizedClient else {
+            print("User isn't authorized. Weird.")
+            return
+        }
+        
+        // タスク配列をテキストにします。
+        var text:String = "\n\n"
+        text += self.convertListToText(lines: self.normals)
+        text += self.convertDonesToText(dones: self.dones)
+        let uploadData = text.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+        
+        client.files.upload(path: filePath, mode: .overwrite, autorename: false, input: uploadData)
+            .response {response, error in
+            
+            if let response = response {
+                
+                // ファイルの更新日付を更新します。
+                let formatter = Utils.createDateFormatter(format: Utils.FORMAT_YMDHMS)
+                label.text = "Last modified:" + formatter.string(from: response.clientModified)
+
+            } else if let error = error {
+                print(error)
+            }
+        }
+        .progress { progressData in
+            print(progressData)
+        }
+    }
+    
+    
+    // リストを文字列にします。
+    private static func convertListToText(lines:[String]) -> String {
+        
+        return lines.joined(separator: "\n\n")
+    }
+    
+    
+    // Doneタスクを文字列にします。
+    private static func convertDonesToText(dones:[String:[String]]) -> String {
+        
+        var ret:String = "\n\n\n\n\n"
+        
+        // 日付降順にします。
+        for (date, lines) in dones.sorted(by: {$0.0 > $1.0}) {
+            ret += "\n=====\(date)\n" + lines.joined(separator: "\n")
         }
         return ret
     }
