@@ -110,8 +110,20 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    // ===============================
+    // タスク追加に関するもの
+    // ===============================
+    // セル追加画面の save を押すとここが実行されます。
+    @IBAction func addToMainViewController (segue:UIStoryboardSegue) {
+        
+        // 追加画面で書かれたテキストをこちらのリストに適用します。
+        let previousView = segue.source as! AddTableViewController
+        Tasks.normals.insert(previousView.addedText, at: 0)
+        table.reloadData()
 
-    
+        // 現在の状態をDropboxにアップロード。
+        Tasks.uploadTasks(label: label)
+    }
     
     
     

@@ -18,6 +18,7 @@
 		07649DA2215E338000CAE7BC /* Tasks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649DA1215E338000CAE7BC /* Tasks.swift */; };
 		07649DA4215E3A2700CAE7BC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649DA3215E3A2700CAE7BC /* Utils.swift */; };
 		07649DA6215E4E5F00CAE7BC /* EditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649DA5215E4E5F00CAE7BC /* EditTableViewController.swift */; };
+		07649DA8215E634600CAE7BC /* AddTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07649DA7215E634600CAE7BC /* AddTableViewController.swift */; };
 		228DE839D6076B60B4B7EC05 /* Pods_ShibafuUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63E5B315D2A66EA54A1D4E51 /* Pods_ShibafuUITests.framework */; };
 		62FBC4AAB4BF1B22B1EBED90 /* Pods_ShibafuTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8C297FCF2CD5E58489EBD65 /* Pods_ShibafuTests.framework */; };
 		DF9A6AA296734EFF281B2382 /* Pods_Shibafu.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B48527106F2FB88C9C25EBB9 /* Pods_Shibafu.framework */; };
@@ -58,6 +59,7 @@
 		07649DA1215E338000CAE7BC /* Tasks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tasks.swift; sourceTree = "<group>"; };
 		07649DA3215E3A2700CAE7BC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		07649DA5215E4E5F00CAE7BC /* EditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTableViewController.swift; sourceTree = "<group>"; };
+		07649DA7215E634600CAE7BC /* AddTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTableViewController.swift; sourceTree = "<group>"; };
 		2F34F85C6F1D5DC3BB274589 /* Pods-Shibafu.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Shibafu.release.xcconfig"; path = "Pods/Target Support Files/Pods-Shibafu/Pods-Shibafu.release.xcconfig"; sourceTree = "<group>"; };
 		4AE52DA2AFC99C445C806865 /* Pods-ShibafuUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShibafuUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShibafuUITests/Pods-ShibafuUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		63E5B315D2A66EA54A1D4E51 /* Pods_ShibafuUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShibafuUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,13 +124,14 @@
 		07649D6A215E12D700CAE7BC /* Shibafu */ = {
 			isa = PBXGroup;
 			children = (
+				07649DA7215E634600CAE7BC /* AddTableViewController.swift */,
+				07649DA5215E4E5F00CAE7BC /* EditTableViewController.swift */,
 				07649DA1215E338000CAE7BC /* Tasks.swift */,
 				07649DA3215E3A2700CAE7BC /* Utils.swift */,
 				07649D6B215E12D700CAE7BC /* AppDelegate.swift */,
 				07649D6D215E12D700CAE7BC /* FirstViewController.swift */,
 				07649D6F215E12D700CAE7BC /* SecondViewController.swift */,
 				07649D71215E12D700CAE7BC /* Main.storyboard */,
-				07649DA5215E4E5F00CAE7BC /* EditTableViewController.swift */,
 				07649D74215E12DA00CAE7BC /* Assets.xcassets */,
 				07649D76215E12DA00CAE7BC /* LaunchScreen.storyboard */,
 				07649D79215E12DA00CAE7BC /* Info.plist */,
@@ -406,6 +409,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				07649DA4215E3A2700CAE7BC /* Utils.swift in Sources */,
+				07649DA8215E634600CAE7BC /* AddTableViewController.swift in Sources */,
 				07649DA6215E4E5F00CAE7BC /* EditTableViewController.swift in Sources */,
 				07649DA2215E338000CAE7BC /* Tasks.swift in Sources */,
 				07649D70215E12D700CAE7BC /* SecondViewController.swift in Sources */,
