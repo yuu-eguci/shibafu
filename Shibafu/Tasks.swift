@@ -15,8 +15,7 @@ class Tasks {
     static let filePath:String = "/test-reminder.txt"
     static var modifiedDate:Date = Date()
     static var normals:[String] = []
-    static var keeps:[String] = []
-    static var dones:[String:[String]] = [:]
+    static var dones:[String:[String]] = ["yyyy-MM-dd":["test","test"]]
     
     
     // DLしてnormals,keeps,donesを埋めて、テーブルを更新します。
@@ -43,11 +42,10 @@ class Tasks {
                 // normals作成。
                 self.normals = self.pickNormalTasks(lines: lines)
                 
-                // keeps作成。
-                self.keeps = self.pickKeepTasks(lines: lines)
-                
                 // dones作成。
                 self.dones = self.pickDoneTasks(lines: lines)
+                
+                dump(self.normals)
                 
                 table.reloadData()
             }
@@ -78,7 +76,7 @@ class Tasks {
     }
     
     
-    // リストからノーマルタスク取り出します。
+    // リストからノーマル・継続タスク取り出します。
     private static func pickNormalTasks(lines:[String]) -> [String] {
         
         var ret:[String] = []
@@ -87,26 +85,7 @@ class Tasks {
             if Utils.isDoneDateRow(line: line) {
                 return ret
             }
-            if Utils.isKeepTask(line: line) {
-                continue
-            }
             ret.append(line)
-        }
-        return ret
-    }
-    
-    
-    // リストから継続タスク取り出します。
-    private static func pickKeepTasks(lines:[String]) -> [String] {
-        
-        var ret:[String] = []
-        for line in lines {
-            if Utils.isDoneDateRow(line: line) {
-                return ret
-            }
-            if Utils.isKeepTask(line: line) {
-                ret.append(line)
-            }
         }
         return ret
     }
