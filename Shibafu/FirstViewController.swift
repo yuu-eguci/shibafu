@@ -154,8 +154,22 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    
-    
+    // ===============================
+    // タップでチェックをつけはずし
+    // ===============================
+    // セルがタップされたときの処理です。
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        // OKをつけはずし。
+        let line:String = Tasks.normals[indexPath.row]
+        Tasks.normals[indexPath.row] = Utils.isDoneTask(line:line) ? Utils.getRidOfOK(line: line) : "\(line)\n    OK"
+        
+        // セル生成時にチェックが付きます。
+        table.reloadData()
+        
+        // 現在の状態をDropboxにアップロード。
+        Tasks.uploadTasks(label: label)
+    }
     
 
     
