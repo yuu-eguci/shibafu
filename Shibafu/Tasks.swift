@@ -12,7 +12,7 @@ import SwiftyDropbox
 class Tasks {
     
     
-    static let filePath:String = "/test-reminder.txt"
+    static let filePath:String = "/reminder.txt"
     static var modifiedDate:Date = Date()
     static var normals:[String] = []
     static var dones:[String:[String]] = ["yyyy-MM-dd":["test","test"]]
@@ -38,6 +38,7 @@ class Tasks {
                 
                 // ファイルの更新日付です。
                 self.modifiedDate = response.0.clientModified
+                //self.modifiedDate = Date(timeInterval: -60*60*24, since: Date())
                 
                 // ファイルの内容です。
                 let originalText:String? = String(data:response.1, encoding:.utf8)
@@ -131,7 +132,6 @@ class Tasks {
             }
             ret[date] = tasks
         }
-        dump(ret)
         return ret
     }
     
