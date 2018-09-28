@@ -35,7 +35,7 @@ class EditTableViewController: UITableViewController, UITextViewDelegate {
         textView.delegate = self
         
         // これから編集するものをテキストビューに表示します。
-        //editTextView.text = lines[longPressedIndex!]
+        textView.text = Tasks.normals[longPressedIndex!]
         
         // テキストビューにカーソルをあわせます。
         textView.becomeFirstResponder()
@@ -48,5 +48,17 @@ class EditTableViewController: UITableViewController, UITextViewDelegate {
         
         table.beginUpdates()
         table.endUpdates()
+    }
+    
+    
+    // storyboardでsaveボタンからexit(上にみっつ並ぶボタンの右端)にsegueひくこと。(unwind segue)
+    // unwind segueのidentifierはstoryboardのオブジェクト一覧から選択して設定する。
+    // segue起動時に実行されるよここが。そんでFirstViewのsaveToMainViewControllerに飛ぶ。
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "saveEdit" {
+            // 変更テキストをセットします。
+            editedText = textView.text
+        }
     }
 }

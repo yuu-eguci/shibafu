@@ -108,7 +108,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="DRY-a4-emk">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="10" width="375" height="33.5"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -119,7 +119,6 @@
                                                 <constraint firstAttribute="bottom" secondItem="DRY-a4-emk" secondAttribute="bottom" id="53E-ZA-0R0"/>
                                                 <constraint firstItem="DRY-a4-emk" firstAttribute="leading" secondItem="9XP-5C-fFZ" secondAttribute="leading" id="7oy-rB-oPv"/>
                                                 <constraint firstAttribute="trailing" secondItem="DRY-a4-emk" secondAttribute="trailing" id="Crg-d0-TaZ"/>
-                                                <constraint firstItem="DRY-a4-emk" firstAttribute="top" secondItem="9XP-5C-fFZ" secondAttribute="top" id="PcN-M2-K3V"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
