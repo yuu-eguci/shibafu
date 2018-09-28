@@ -158,7 +158,7 @@ class Tasks {
         
         // donesへ追加。
         let formatter:DateFormatter = Utils.createDateFormatter(format: Utils.FORMAT_YMD)
-        dones[formatter.string(from: Date())] = lines
+        dones[formatter.string(from: Date(timeInterval: -60*60*24, since: Date()))] = lines
     }
     
     
