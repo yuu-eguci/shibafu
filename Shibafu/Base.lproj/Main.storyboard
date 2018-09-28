@@ -34,6 +34,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="VIQ-sd-Hzp" kind="show" identifier="edit" id="8QC-1w-MoG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -72,6 +75,65 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="749.60000000000002" y="-320.68965517241384"/>
+        </scene>
+        <!--Edit Table View Controller-->
+        <scene sceneID="aHc-m5-UcG">
+            <objects>
+                <tableViewController id="VIQ-sd-Hzp" customClass="EditTableViewController" customModule="Shibafu" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" id="5Jd-xE-1fr">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <navigationBar key="tableHeaderView" contentMode="scaleToFill" id="lra-UK-oiU">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <items>
+                                <navigationItem title="Edit Task" id="ibF-n9-bjb">
+                                    <barButtonItem key="leftBarButtonItem" systemItem="save" id="M6f-z7-h3n"/>
+                                </navigationItem>
+                            </items>
+                        </navigationBar>
+                        <sections>
+                            <tableViewSection id="Zzf-Hh-nI3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="Xif-OH-fWD">
+                                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Xif-OH-fWD" id="84E-RZ-Emc">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tjL-Ok-OmY">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                </textView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="tjL-Ok-OmY" firstAttribute="leading" secondItem="84E-RZ-Emc" secondAttribute="leading" id="7wS-Fv-rYY"/>
+                                                <constraint firstItem="tjL-Ok-OmY" firstAttribute="top" secondItem="84E-RZ-Emc" secondAttribute="top" id="Rkb-dd-e2E"/>
+                                                <constraint firstAttribute="trailing" secondItem="tjL-Ok-OmY" secondAttribute="trailing" id="lDY-lv-Nkm"/>
+                                                <constraint firstAttribute="bottom" secondItem="tjL-Ok-OmY" secondAttribute="bottom" id="nLw-6g-Yf9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="VIQ-sd-Hzp" id="glq-cd-gYn"/>
+                            <outlet property="delegate" destination="VIQ-sd-Hzp" id="M2Z-rX-Dbf"/>
+                        </connections>
+                    </tableView>
+                    <connections>
+                        <outlet property="table" destination="5Jd-xE-1fr" id="CwU-zv-xE1"/>
+                        <outlet property="textView" destination="tjL-Ok-OmY" id="ebs-Yt-ur8"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Vxz-MA-bfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1519" y="-321"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
