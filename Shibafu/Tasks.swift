@@ -45,8 +45,6 @@ class Tasks {
                 // dones作成。
                 self.dones = self.pickDoneTasks(lines: lines)
                 
-                dump(self.normals)
-                
                 table.reloadData()
             }
             
