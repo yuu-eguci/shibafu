@@ -126,8 +126,32 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    // ===============================
+    // スワイプデリートに関するもの
+    // ===============================
+    // テーブルにスワイプ削除機能を追加。
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
     
     
+    // スワイプ時のメッセージを変えたいときはこれ。
+    func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        return "これ消す"
+    }
+    
+    
+    // スワイプデリート時の処理です。
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            Tasks.normals.remove(at: indexPath.row)
+            table.reloadData()
+            
+            // 現在の状態をDropboxにアップロード。
+            Tasks.uploadTasks(label: label)
+        }
+    }
     
     
     
