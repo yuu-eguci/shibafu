@@ -17,9 +17,15 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     // ===============================
     // タスクが入るテーブル。
     @IBOutlet weak var table: UITableView!
+    // 日付を格納するラベル。
+    @IBOutlet weak var label: UILabel!
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        // 更新日付出すの、ここでいっか……。
+        let formatter:DateFormatter = Utils.createDateFormatter(format: Utils.FORMAT_YMDHMS)
+        label.text = "Last modified:" + formatter.string(from: Tasks.modifiedDate)
         
         return Tasks.normals.count
     }
@@ -50,8 +56,7 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
-    // 日付を格納するラベル。
-    @IBOutlet weak var label: UILabel!
+
     
     
     // Dropbox認証がされてないときは強制的に認証ページへ

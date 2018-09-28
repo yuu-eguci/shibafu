@@ -11,6 +11,13 @@ import Foundation
 class Utils {
     
     
+    // DateFormats
+    static let FORMAT_YMDHMS:String = "yyyy-MM-dd HH:mm:ss"
+    static let FORMAT_YMD:String = "yyyy-MM-dd"
+    static let FORMAT_M:String = "M"
+    static let FORMAT_D:String = "d"
+    
+    
     // 継続タスクである。
     static func isKeepTask(line:String) -> Bool {
         return line.prefix(1) == "*"
