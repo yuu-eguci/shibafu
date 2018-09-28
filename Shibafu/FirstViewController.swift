@@ -171,7 +171,17 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         Tasks.uploadTasks(label: label)
     }
     
-
+    
+    // ===============================
+    // フリックで更新
+    // ===============================
+    // テーブルがフリックされたとき起こる処理です。
+    @objc func foo(_ sender: UIRefreshControl) {
+        
+        // Dropboxからデータを取得してテーブルに表示します。
+        Tasks.downloadTasks(table:table)
+        sender.endRefreshing()
+    }
     
     
     // Dropbox認証がされてないときは強制的に認証ページへ
@@ -195,6 +205,11 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(editCell))
         recognizer.delegate = self
         table.addGestureRecognizer(recognizer)
+        
+        // テーブルを一番上でフリックすることで指定したメソッドを実行します。
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(foo(_:)), for: .valueChanged)
+        table.refreshControl = refreshControl
     }
 }
 
