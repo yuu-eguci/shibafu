@@ -25,7 +25,7 @@ class Tasks {
     
     
     // DLしてnormals,keeps,donesを埋めて、テーブルあるいはcollectionViewを更新します。
-    static func downloadTasks(table:UITableView?=nil, collection:UICollectionView?=nil) {
+    static func downloadTasks(table:UITableView?=nil, collection:UICollectionView?=nil, label:UILabel?=nil) {
         
         // Dropbox認証。
         guard let client:DropboxClient = DropboxClientsManager.authorizedClient else {
@@ -50,6 +50,13 @@ class Tasks {
                 
                 // dones作成。
                 self.dones = self.pickDoneTasks(lines: lines)
+                
+                // 日付が変わってたら完了タスクをdoneへ送ります。
+                let formatter:DateFormatter = Utils.createDateFormatter(format: Utils.FORMAT_YMD)
+                if formatter.string(from: self.modifiedDate) != formatter.string(from: Date()) {
+                    self.organizeTasks()
+                    self.uploadTasks(label: label)
+                }
                 
                 if table != nil {
                     table?.reloadData()
@@ -114,13 +121,44 @@ class Tasks {
             }
             let date:String = String(lines[i].suffix(10))
             var tasks:[String] = []
-            while lines.indices.contains(i+1) && !Utils.isDoneDateRow(line: lines[i+1]) {
+            while lines.indices.contains(i+1) && !Utils.isDoneDateRow(line: lines[i+1]) && !Utils.isDoneDateRow(line: lines[i+1]) {
                 i += 1
                 tasks.append(lines[i])
             }
+            if tasks.isEmpty {
+                i += 1
+                continue
+            }
             ret[date] = tasks
         }
+        dump(ret)
         return ret
+    }
+    
+    
+    // normalsから完了済みタスクをdonesへ送ります。
+    private static func organizeTasks() {
+        
+        // normals整理。
+        var lines:[String] = []
+        for (i,line) in normals.enumerated() {
+            if Utils.isDoneTask(line: line) {
+                lines.append(Utils.getRidOfOK(line: line))
+                if Utils.isKeepTask(line: line) {
+                    normals[i] = Utils.getRidOfOK(line: line)
+                } else {
+                    normals[i] = ""
+                }
+            }
+        }
+        normals = normals.filter {!$0.isEmpty}
+        if lines.isEmpty {
+            return
+        }
+        
+        // donesへ追加。
+        let formatter:DateFormatter = Utils.createDateFormatter(format: Utils.FORMAT_YMD)
+        dones[formatter.string(from: Date())] = lines
     }
     
     
@@ -174,7 +212,7 @@ class Tasks {
     
     
     // 現在の状態をアップロードします。
-    static func uploadTasks(label:UILabel) {
+    static func uploadTasks(label:UILabel?=nil) {
         
         // Dropbox認証。
         guard let client:DropboxClient = DropboxClientsManager.authorizedClient else {
@@ -186,6 +224,7 @@ class Tasks {
         var text:String = "\n\n"
         text += self.convertListToText(lines: self.normals)
         text += self.convertDonesToText(dones: self.dones)
+        text += "\n"
         let uploadData = text.data(using: String.Encoding.utf8, allowLossyConversion: false)!
         
         client.files.upload(path: filePath, mode: .overwrite, autorename: false, input: uploadData)
@@ -194,9 +233,10 @@ class Tasks {
             if let response = response {
                 
                 // ファイルの更新日付を更新します。
-                let formatter = Utils.createDateFormatter(format: Utils.FORMAT_YMDHMS)
-                label.text = "Last modified:" + formatter.string(from: response.clientModified)
-
+                if label != nil {
+                    let formatter = Utils.createDateFormatter(format: Utils.FORMAT_YMDHMS)
+                    label?.text = "Last modified:" + formatter.string(from: response.clientModified)
+                }
             } else if let error = error {
                 print(error)
             }
