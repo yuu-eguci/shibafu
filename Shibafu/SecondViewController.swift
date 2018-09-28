@@ -21,7 +21,7 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     // 個数。
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return shibafuRows.count
+        return Tasks.shibafuRows.count
     }
     
     
@@ -41,14 +41,14 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     private var wroteMonth:Bool = false
     // 描画中に使う: 一週間の月。
     private var thisMonth:String = ""
-    
+
     
     // cellを作成します。
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // このセルのdateとint。
-        let date:Date = shibafuRows[indexPath.row].key
-        let int:Int = shibafuRows[indexPath.row].value
+        let date:Date = Tasks.shibafuRows[indexPath.row].key
+        let int:Int = Tasks.shibafuRows[indexPath.row].value
         
         // storyboardで設定したidentifier.
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
@@ -60,8 +60,8 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         let label = cell.contentView.viewWithTag(1) as! UILabel
         
         // 曜日表記行の場合はここで終了。
-        if int == WEEKDAY_ROW_VALUE {
-            label.text = weekdays[column]
+        if int == Tasks.WEEKDAY_ROW_VALUE {
+            label.text = Tasks.weekdays[column]
             return cell
         }
         
@@ -93,71 +93,6 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
     }
     
     
-    // ============================================================
-    // データを collectionView に反映するメソッド。
-    // ============================================================
-    // ページロードの瞬間だけ出すデフォルトのリストを定義します。そのあとちゃんとしたデータを取得してreloadDataするからね。
-    private var shibafuRows:[(key: Date, value: Int)] = [
-        (key: Date(), value: 0),
-        ]
-    
-    
-    // 特殊なセルであることを示すvalue値。うん、こういうのはよくないよね。でもラクだからやる。
-    private let WEEKDAY_ROW_VALUE:Int = 68453
-    
-    
-    // 曜日。
-    private let weekdays:[String] = ["S", "F", "T", "W", "T", "M", "S", "", ]
-    
-    
-    // 芝生リストデータを使って collectionView を更新します。
-    func reloadShibafu() {
-        
-        let array:[(key: Date, value: Int)] = createShibafuRows(dones: Tasks.dones).sorted(by: {$0.0 > $1.0})
-        
-        // いちばん上の行に曜日をいれたいので、いれておきます。
-        shibafuRows.removeAll()
-        for _ in 1...8 {
-            shibafuRows.append((key: Date(), value: WEEKDAY_ROW_VALUE))
-        }
-        
-        // いちばん右に日付をいれたいので、7つおきに空っぽのデータをいれます。
-        for (i,a) in array.enumerated() {
-            shibafuRows.append(a)
-            if i%7 == 6 {
-                shibafuRows.append((key: Date(), value: 0))
-            }
-        }
-        collection.reloadInputViews()
-    }
-    
-    
-    // 芝生リスト用のDoneタスクリストを作成します。[日付->達成タスク数]
-    private func createShibafuRows(dones:[String:[String]]) -> [Date:Int] {
-        
-        // 1日足したりするためにキーをDateに直します。
-        var a:[Date:Int] = [:]
-        for (date, lines) in dones {
-            a[Utils.getDateFromString(string:date)] = lines.count
-        }
-        
-        // リスト内いちばん昔の日 〜 今日から未来の土曜日 までの歯抜け日を埋めます。
-        let closeSaturday:Date = Utils.getCloseSaturday()
-        
-        // リスト内の歯抜けしてる日を埋めます。
-        var d:Date = a.keys.min()!
-        while d <= closeSaturday {
-            if !a.keys.contains(d) {
-                a[d] = 0
-            }
-            // +1日
-            d = Date(timeInterval: 60*60*24, since: d)
-        }
-        
-        return a
-    }
-    
-    
     // 日付だけを表示してくれるformatter。didLoadで中身をいれるよ。
     var dayFormatter:DateFormatter = DateFormatter()
     // 月だけを表示してくれるformatter。didLoadで中身をいれるよ。
@@ -170,9 +105,7 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         dayFormatter = Utils.createDateFormatter(format: Utils.FORMAT_D)
         monthFormatter = Utils.createDateFormatter(format: Utils.FORMAT_M)
         
-        reloadShibafu()
+        // Dropboxからデータを取得してcollectionViewに表示します。
+        Tasks.downloadTasks(collection:collection)
     }
-
-
 }
-

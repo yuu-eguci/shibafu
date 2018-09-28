@@ -91,6 +91,9 @@ class Utils {
         if num >= 10 {
             return colors.last!
         }
+        if num == 0 {
+            return UIColor( red: 255/255, green: 255/255, blue: 255/255, alpha: 1.0 )
+        }
         return colors[num / 2]
     }
 }

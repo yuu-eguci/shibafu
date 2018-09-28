@@ -212,4 +212,3 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         table.refreshControl = refreshControl
     }
 }
-

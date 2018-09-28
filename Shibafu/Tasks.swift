@@ -16,10 +16,16 @@ class Tasks {
     static var modifiedDate:Date = Date()
     static var normals:[String] = []
     static var dones:[String:[String]] = ["yyyy-MM-dd":["test","test"]]
+    static var shibafuRows:[(key: Date, value: Int)] = []
+    
+    // 特殊なセルであることを示すvalue値。うん、これはよくないよね。でもラクだからやる。
+    static let WEEKDAY_ROW_VALUE:Int = 68453
+    // 曜日。
+    static let weekdays:[String] = ["S", "F", "T", "W", "T", "M", "S", "", ]
     
     
-    // DLしてnormals,keeps,donesを埋めて、テーブルを更新します。
-    static func downloadTasks(table:UITableView) {
+    // DLしてnormals,keeps,donesを埋めて、テーブルあるいはcollectionViewを更新します。
+    static func downloadTasks(table:UITableView?=nil, collection:UICollectionView?=nil) {
         
         // Dropbox認証。
         guard let client:DropboxClient = DropboxClientsManager.authorizedClient else {
@@ -45,9 +51,15 @@ class Tasks {
                 // dones作成。
                 self.dones = self.pickDoneTasks(lines: lines)
                 
-                table.reloadData()
+                if table != nil {
+                    table?.reloadData()
+                }
+                else if collection != nil {
+                    // 芝生用リスト作成。
+                    self.shibafuRows = self.createShibafuRows(dones: self.dones)
+                    collection?.reloadData()
+                }
             }
-            
         }
     }
     
@@ -109,6 +121,55 @@ class Tasks {
             ret[date] = tasks
         }
         return ret
+    }
+    
+    
+    // 芝生リストデータを使って collectionView を更新します。
+    private static func createShibafuRows(dones:[String:[String]]) -> [(key: Date, value: Int)] {
+        
+        let array:[(key: Date, value: Int)] = createOriginalShibafuRows(dones: dones).sorted(by: {$0.0 > $1.0})
+        
+        // いちばん上の行に曜日をいれたいので、いれておきます。
+        var shibafuRows:[(key: Date, value: Int)] = []
+        for _ in 1...8 {
+            shibafuRows.append((key: Date(), value: self.WEEKDAY_ROW_VALUE))
+        }
+        
+        // いちばん右に日付をいれたいので、7つおきに空っぽのデータをいれます。
+        for (i,a) in array.enumerated() {
+            shibafuRows.append(a)
+            if i%7 == 6 {
+                shibafuRows.append((key: Date(), value: 0))
+            }
+        }
+    
+        return shibafuRows
+    }
+    
+    
+    // 芝生リスト用のDoneタスクリストを作成します。[日付->達成タスク数]
+    private static func createOriginalShibafuRows(dones:[String:[String]]) -> [Date:Int] {
+        
+        // 1日足したりするためにキーをDateに直します。
+        var a:[Date:Int] = [:]
+        for (date, lines) in dones {
+            a[Utils.getDateFromString(string:date)] = lines.count
+        }
+        
+        // リスト内いちばん昔の日 〜 今日から未来の土曜日 までの歯抜け日を埋めます。
+        let closeSaturday:Date = Utils.getCloseSaturday()
+        
+        // リスト内の歯抜けしてる日を埋めます。
+        var d:Date = a.keys.min()!
+        while d <= closeSaturday {
+            if !a.keys.contains(d) {
+                a[d] = 0
+            }
+            // +1日
+            d = Date(timeInterval: 60*60*24, since: d)
+        }
+        
+        return a
     }
     
     
