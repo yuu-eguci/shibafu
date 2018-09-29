@@ -184,12 +184,29 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
     }
     
     
+    // ===============================
+    // ユーザーネーム表示
+    // ===============================
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    
     // Dropbox認証がされてないときは強制的に認証ページへ
     override func viewDidAppear(_ animated: Bool) {
         
         if DropboxClientsManager.authorizedClient == nil {
             DropboxClientsManager.authorizeFromController(
                 UIApplication.shared, controller: self, openURL: {(url:URL) -> Void in UIApplication.shared.open(url)})
+        }
+        
+        // ユーザ名表示。
+        if let client = DropboxClientsManager.authorizedClient {
+            client.users.getCurrentAccount().response { response, error in
+                if let account = response {
+                    self.usernameLabel.text = account.name.givenName
+                } else {
+                    print(error!)
+                }
+            }
         }
     }
     
