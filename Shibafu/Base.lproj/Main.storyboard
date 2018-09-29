@@ -277,6 +277,9 @@
                         <viewLayoutGuide key="safeArea" id="29Z-63-euZ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="check" selectedImage="check" id="4Nf-jl-dhV"/>
+                    <connections>
+                        <outlet property="label" destination="3Lq-OP-UjS" id="iAV-qc-7pg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kun-dC-3OS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
