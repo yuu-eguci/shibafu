@@ -208,14 +208,14 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
             }
         }
+        
+        // Dropboxからデータを取得してテーブルに表示します。
+        Tasks.downloadTasks(table:table)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Dropboxからデータを取得してテーブルに表示します。
-        Tasks.downloadTasks(table:table)
         
         // テーブル長押し時のメソッドを定義します。
         let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(editCell))
