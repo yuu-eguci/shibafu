@@ -274,6 +274,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This page is for login test." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dmj-qt-ghl">
+                                <rect key="frame" x="0.0" y="265" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -283,6 +289,7 @@
                             <constraint firstItem="3Lq-OP-UjS" firstAttribute="top" secondItem="Wdr-kh-SII" secondAttribute="bottom" id="AZp-rp-pd5"/>
                             <constraint firstItem="bF3-jg-Cce" firstAttribute="top" secondItem="29Z-63-euZ" secondAttribute="top" id="OWY-3x-Xk3"/>
                             <constraint firstItem="bF3-jg-Cce" firstAttribute="leading" secondItem="29Z-63-euZ" secondAttribute="leading" id="Qaf-88-2QK"/>
+                            <constraint firstItem="Dmj-qt-ghl" firstAttribute="top" secondItem="QKD-vY-HAx" secondAttribute="bottom" constant="10" id="Uz9-vQ-RKc"/>
                             <constraint firstItem="bF3-jg-Cce" firstAttribute="trailing" secondItem="29Z-63-euZ" secondAttribute="trailing" id="V4D-rc-Kae"/>
                             <constraint firstItem="29Z-63-euZ" firstAttribute="trailing" secondItem="3Lq-OP-UjS" secondAttribute="trailing" id="WGb-4F-GmY"/>
                             <constraint firstItem="Wuj-h8-5cm" firstAttribute="top" secondItem="3Lq-OP-UjS" secondAttribute="bottom" constant="10" id="aO6-uw-Z7t"/>
@@ -292,6 +299,8 @@
                             <constraint firstItem="29Z-63-euZ" firstAttribute="trailing" secondItem="Wuj-h8-5cm" secondAttribute="trailing" constant="16" id="rqu-3Z-LMo"/>
                             <constraint firstItem="QKD-vY-HAx" firstAttribute="top" secondItem="Wuj-h8-5cm" secondAttribute="bottom" constant="10" id="tbP-HT-uhS"/>
                             <constraint firstItem="29Z-63-euZ" firstAttribute="trailing" secondItem="QKD-vY-HAx" secondAttribute="trailing" constant="16" id="u8S-Em-4Qn"/>
+                            <constraint firstItem="Dmj-qt-ghl" firstAttribute="leading" secondItem="29Z-63-euZ" secondAttribute="leading" id="vP1-UP-Nib"/>
+                            <constraint firstItem="29Z-63-euZ" firstAttribute="trailing" secondItem="Dmj-qt-ghl" secondAttribute="trailing" id="wKK-7b-Db2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="29Z-63-euZ"/>
                     </view>
