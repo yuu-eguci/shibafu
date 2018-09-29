@@ -214,21 +214,73 @@
             </objects>
             <point key="canvasLocation" x="1542" y="-77"/>
         </scene>
-        <!--View Controller-->
+        <!--Third View Controller-->
         <scene sceneID="hAk-8q-Pd2">
             <objects>
-                <viewController id="uLr-ru-leU" sceneMemberID="viewController">
+                <viewController id="uLr-ru-leU" customClass="ThirdViewController" customModule="Shibafu" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BRC-dc-7cd">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bF3-jg-Cce">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <items>
+                                    <navigationItem title="Authorization" id="dTt-ff-up6"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login or Not." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lq-OP-UjS">
+                                <rect key="frame" x="0.0" y="74" width="375" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wuj-h8-5cm">
+                                <rect key="frame" x="16" y="105" width="343" height="70"/>
+                                <color key="backgroundColor" red="0.99013223100000003" green="1" blue="0.86048874900000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="AOh-El-5ac"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Login to Dropbox"/>
+                                <connections>
+                                    <action selector="loginButton:" destination="uLr-ru-leU" eventType="touchUpInside" id="Tg1-eq-THO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QKD-vY-HAx">
+                                <rect key="frame" x="16" y="185" width="343" height="70"/>
+                                <color key="backgroundColor" red="1" green="0.92472778460000005" blue="0.85476413740000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="AOn-rw-gg9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="Logout from Dropbox"/>
+                                <connections>
+                                    <action selector="logoutButton:" destination="uLr-ru-leU" eventType="touchUpInside" id="cKE-ZO-t4L"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3Lq-OP-UjS" firstAttribute="top" secondItem="bF3-jg-Cce" secondAttribute="bottom" constant="10" id="1UW-Zd-jNX"/>
+                            <constraint firstItem="3Lq-OP-UjS" firstAttribute="leading" secondItem="29Z-63-euZ" secondAttribute="leading" id="AAm-X5-UQG"/>
+                            <constraint firstItem="bF3-jg-Cce" firstAttribute="top" secondItem="29Z-63-euZ" secondAttribute="top" id="OWY-3x-Xk3"/>
+                            <constraint firstItem="bF3-jg-Cce" firstAttribute="leading" secondItem="29Z-63-euZ" secondAttribute="leading" id="Qaf-88-2QK"/>
+                            <constraint firstItem="bF3-jg-Cce" firstAttribute="trailing" secondItem="29Z-63-euZ" secondAttribute="trailing" id="V4D-rc-Kae"/>
+                            <constraint firstItem="29Z-63-euZ" firstAttribute="trailing" secondItem="3Lq-OP-UjS" secondAttribute="trailing" id="WGb-4F-GmY"/>
+                            <constraint firstItem="Wuj-h8-5cm" firstAttribute="top" secondItem="3Lq-OP-UjS" secondAttribute="bottom" constant="10" id="aO6-uw-Z7t"/>
+                            <constraint firstItem="Wuj-h8-5cm" firstAttribute="leading" secondItem="29Z-63-euZ" secondAttribute="leading" constant="16" id="eqG-ky-3zb"/>
+                            <constraint firstItem="QKD-vY-HAx" firstAttribute="leading" secondItem="29Z-63-euZ" secondAttribute="leading" constant="16" id="j4P-xT-bDg"/>
+                            <constraint firstItem="29Z-63-euZ" firstAttribute="trailing" secondItem="Wuj-h8-5cm" secondAttribute="trailing" constant="16" id="rqu-3Z-LMo"/>
+                            <constraint firstItem="QKD-vY-HAx" firstAttribute="top" secondItem="Wuj-h8-5cm" secondAttribute="bottom" constant="10" id="tbP-HT-uhS"/>
+                            <constraint firstItem="29Z-63-euZ" firstAttribute="trailing" secondItem="QKD-vY-HAx" secondAttribute="trailing" constant="16" id="u8S-Em-4Qn"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="29Z-63-euZ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="check" selectedImage="check" id="4Nf-jl-dhV"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kun-dC-3OS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1" y="791"/>
+            <point key="canvasLocation" x="-2.3999999999999999" y="790.25487256371821"/>
         </scene>
         <!--Second View Controller-->
         <scene sceneID="wg7-f3-ORb">
