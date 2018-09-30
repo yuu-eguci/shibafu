@@ -196,6 +196,8 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         if DropboxClientsManager.authorizedClient == nil {
             DropboxClientsManager.authorizeFromController(
                 UIApplication.shared, controller: self, openURL: {(url:URL) -> Void in UIApplication.shared.open(url)})
+            // Dropboxからデータを取得してテーブルに表示します。
+            Tasks.downloadTasks(table:table)
         }
         
         // ユーザ名表示。
@@ -208,14 +210,16 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
                 }
             }
         }
-        
-        // Dropboxからデータを取得してテーブルに表示します。
-        Tasks.downloadTasks(table:table)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Dropboxからデータを取得してテーブルに表示します。
+        if DropboxClientsManager.authorizedClient != nil {
+            Tasks.downloadTasks(table:table)
+        }
         
         // テーブル長押し時のメソッドを定義します。
         let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(editCell))
