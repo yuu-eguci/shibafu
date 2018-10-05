@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        DropboxClientsManager.setupWithAppKey("cnysj8gs6ky5z63")
+        DropboxClientsManager.setupWithAppKey("4occ0ql1gm4m4vm")
         
         return true
     }
