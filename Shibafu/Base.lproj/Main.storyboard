@@ -111,6 +111,11 @@
                                             <segue destination="qYv-6U-6Of" kind="unwind" identifier="saveAdd" unwindAction="addToMainViewControllerWithSegue:" id="5ey-Mf-aZu"/>
                                         </connections>
                                     </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" systemItem="save" id="wvX-U1-bUQ">
+                                        <connections>
+                                            <segue destination="qYv-6U-6Of" kind="unwind" identifier="saveAdd" unwindAction="addToMainViewControllerWithSegue:" id="lAy-mB-FF6"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </navigationItem>
                             </items>
                         </navigationBar>
@@ -176,6 +181,11 @@
                                     <barButtonItem key="leftBarButtonItem" systemItem="save" id="Bk7-px-gYz">
                                         <connections>
                                             <segue destination="9nw-0G-gOX" kind="unwind" identifier="saveEdit" unwindAction="saveToMainViewControllerWithSegue:" id="j5K-F1-1oI"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem key="rightBarButtonItem" systemItem="save" id="QxE-hR-C7h">
+                                        <connections>
+                                            <segue destination="9nw-0G-gOX" kind="unwind" identifier="saveEdit" unwindAction="saveToMainViewControllerWithSegue:" id="0eV-P4-LVN"/>
                                         </connections>
                                     </barButtonItem>
                                 </navigationItem>
