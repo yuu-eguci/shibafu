@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftyDropbox
 
 class SecondViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -91,6 +92,27 @@ class SecondViewController: UIViewController, UICollectionViewDataSource, UIColl
         
         // Dropboxからデータを取得してcollectionViewに表示します。
         Tasks.downloadTasks(collection:collection)
+    }
+    
+    
+    // ===============================
+    // ユーザーネーム表示
+    // ===============================
+    @IBOutlet weak var usernameLabel: UILabel!
+    
+    
+    override func viewDidAppear(_ animated: Bool) {
+        
+        // ユーザ名表示。
+        if let client = DropboxClientsManager.authorizedClient {
+            client.users.getCurrentAccount().response { response, error in
+                if let account = response {
+                    self.usernameLabel.text = account.name.givenName
+                } else {
+                    print(error!)
+                }
+            }
+        }
     }
     
     
