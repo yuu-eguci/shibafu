@@ -24,6 +24,12 @@ class Utils {
     }
     
     
+    // 日付タスクである。
+    static func isScheduleTask(line:String) -> Bool {
+        return line.prefix(1) == "-"
+    }
+    
+    
     // Doneタスクである。
     static func isDoneDateRow(line:String) -> Bool {
         return line.prefix(5) == "====="
