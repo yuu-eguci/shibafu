@@ -42,9 +42,12 @@ class FirstViewController: UIViewController, UITableViewDataSource, UITableViewD
         let text:String = Tasks.normals[indexPath.row]
         cell.textLabel?.text = text
         
-        // 継続タスクは背景色を変えます。
+        // 背景色を変えます。
         if Utils.isKeepTask(line: text) {
             cell.contentView.backgroundColor = UIColor(red: 200/255, green: 220/255, blue: 170/255, alpha: 1.0)
+        }
+        else if Utils.isScheduleTask(line: text) {
+            cell.contentView.backgroundColor = UIColor(red: 200/255, green: 210/255, blue: 220/255, alpha: 1.0)
         }
         
         // 完了しているタスクにはチェックを入れる。
