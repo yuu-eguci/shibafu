@@ -17,6 +17,15 @@ Shibafu
 
 ## Installation
 
-- clone する
-- `$ pod install` する。別途cocoapodが必要。
-- SwiftyDropboxライブラリはお使いのSwiftバージョンと合ってない可能性があるので、もしエラー出たらそこを修正する。
+```bash
+$ git clone https://gitlab.com/midori-mate/shibafu.git
+$ cd shibafu
+$ sudo gem update --system -n /usr/local/bin
+$ sudo gem install -n /usr/local/bin cocoapods
+$ pod setup
+$ pod install
+```
+
+### 'UIAlertControllerStyle' has been renamed to 'UIAlertController.Style'
+
+そのとおり書き換える。
