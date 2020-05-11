@@ -1,4 +1,3 @@
-
 Shibafu
 ===
 
@@ -20,12 +19,17 @@ Shibafu
 ```bash
 $ git clone https://gitlab.com/midori-mate/shibafu.git
 $ cd shibafu
-$ sudo gem update --system -n /usr/local/bin
-$ sudo gem install -n /usr/local/bin cocoapods
+$ sudo gem install cocoapods
 $ pod setup
 $ pod install
 ```
 
+あと、 xcode の環境設定から自分の Apple Account を登録。
+
+![readme](https://user-images.githubusercontent.com/28250432/81537449-28694d80-93a8-11ea-86f0-a38cbad61261.png)
+
 ### 'UIAlertControllerStyle' has been renamed to 'UIAlertController.Style'
 
 そのとおり書き換える。
+
+(2020-05-11)もう出なくなってました。
