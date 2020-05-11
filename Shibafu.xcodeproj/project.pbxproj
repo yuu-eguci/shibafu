@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -255,13 +255,16 @@
 				TargetAttributes = {
 					07649D67215E12D700CAE7BC = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 					};
 					07649D7D215E12DB00CAE7BC = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						TestTargetID = 07649D67215E12D700CAE7BC;
 					};
 					07649D88215E12DB00CAE7BC = {
 						CreatedOnToolsVersion = 10.0;
+						LastSwiftMigration = 1020;
 						TestTargetID = 07649D67215E12D700CAE7BC;
 					};
 				};
@@ -597,7 +600,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mate.org.Shibafu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -617,7 +620,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mate.org.Shibafu;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -638,7 +641,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mate.org.ShibafuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shibafu.app/Shibafu";
 			};
@@ -660,7 +663,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mate.org.ShibafuTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Shibafu.app/Shibafu";
 			};
@@ -681,7 +684,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mate.org.ShibafuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Shibafu;
 			};
@@ -702,7 +705,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = mate.org.ShibafuUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Shibafu;
 			};
