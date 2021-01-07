@@ -76,7 +76,7 @@ class Tasks {
     private static func convertTextToArray(text:String) -> [String] {
         
         // 配列にしつつ空行削除。
-        var lines:[String] = text.components(separatedBy: "\n").filter {$0 != ""}
+        let lines:[String] = text.components(separatedBy: "\n").filter {$0 != ""}
         var lines2:[String] = []
         var i = 0
         while lines.indices.contains(i) {
