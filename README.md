@@ -17,11 +17,10 @@ Shibafu
 ## Installation
 
 ```bash
-$ git clone https://gitlab.com/midori-mate/shibafu.git
-$ cd shibafu
-$ sudo gem install cocoapods
-$ pod setup
-$ pod install
+cd shibafu
+brew install cocoapods
+pod setup
+pod install
 ```
 
 あと、 xcode の環境設定から自分の Apple Account を登録。
