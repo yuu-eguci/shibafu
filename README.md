@@ -19,6 +19,10 @@ Shibafu
 ```bash
 cd shibafu
 brew install cocoapods
+
+# 再インストール後はこんな↓エラーが出るかもしれない。ターミナルにどうすればいいか出るから、それに従う。
+# Error: The following directories are not writable by your user:
+
 pod setup
 pod install
 ```
